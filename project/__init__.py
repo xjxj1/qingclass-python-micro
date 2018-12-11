@@ -7,6 +7,8 @@ from flask import Flask, jsonify
 
 # 初始化app
 app = Flask(__name__)
+# 环境配置
+app.config.from_object('project.config.DevelopmentConfig')
 
 @app.route('/ping', methods=['get'])
 def ping_pong():
@@ -14,3 +16,4 @@ def ping_pong():
         'status': 'success',
         'message': 'pong!'
         })
+
