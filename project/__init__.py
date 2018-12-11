@@ -3,12 +3,14 @@
 # @Author  : Wang XiaoLong (xiaolongw123@gmail.com)
 # @Link    : https://github.com/xjxj1
 # @Version : $Id$
+import os
 from flask import Flask, jsonify
 
 # 初始化app
 app = Flask(__name__)
 # 环境配置
-app.config.from_object('project.config.DevelopmentConfig')
+app_settings = os.getenv('APP_SETTINGS')
+app.config.from_object(app_settings)
 
 @app.route('/ping', methods=['get'])
 def ping_pong():
@@ -16,4 +18,3 @@ def ping_pong():
         'status': 'success',
         'message': 'pong!'
         })
-
